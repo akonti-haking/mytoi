@@ -354,11 +354,7 @@
     }
 
     updateCountdown();
-    setInterval(updateCountdown, 60000);
-
-  
- 
- function sendWA() {
+    setInterval(updateCountdown, function sendWA() {
   const name = document.getElementById('name').value.trim();
   const guests = document.getElementById('guests').value.trim();
   const attendance = document.getElementById('attendance');
@@ -385,6 +381,7 @@
     window.open(altUrl, '_blank');
   }, 500);
 }
+ 
   </script>
 </body>
 </html>
