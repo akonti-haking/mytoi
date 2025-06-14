@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Асет & Ақбота – Үйлену Тойы</title>
+
+  <!-- Новый ровный и классный шрифт -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --primary-color: #c7ba2b;
+      --background-light: #d9e8e9;
+      --background-dark: #2a1e1e;
+      --accent-color: #f1dcd4;
+      --text-color-light: #043427;
+      --text-color-dark: #30d4b9;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Playfair Display', serif; /* ← здесь новый шрифт */
+      background: linear-gradient(to bottom, var(--background-light), #faece6);
+      color: var(--text-color-light);
+      transition: background 0.5s, color 0.5s;
+      position: relative;
+    }
+
+    body.dark {
+      background: var(--background-dark);
+      color: var(--text-color-dark);
+    }
+
+    .container {
+      position: relative;
+      max-width: 650px;
+      margin: 60px auto;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.92);
+      border-radius: 20px;
+      box-shadow: 0 4px 25px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    /* Орнамент по бокам */
+    .ornaments-inner {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: -25px;
+      right: -25px;
+      display: flex;
+      justify-content: space-between;
+      pointer-events: none;
+    }
+
+    .ornaments-inner img {
+      width: 35px;
+      opacity: 0.4;
+    }
+    .corner-ornaments {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.corner-ornaments img {
+  position: absolute;
+  width: 159px; /* Было 60px — теперь крупнее */
+  opacity: 0.5;
+}
+.corner-ornaments {
+  z-index: 1;
+}
+
+.top-left {
+  top: 10px;
+  left: 10px;
+}
+
+.top-right {
+  top: 10px;
+  right: 10px;
+  transform: scaleX(-1);
+}
+
+.bottom-left {
+  bottom: 10px;
+  left: 10px;
+  transform: scaleY(-1);
+}
+
+.bottom-right {
+  bottom: 10px;
+  right: 10px;
+  transform: scale(-1, -1);
+}
+
+
+
+.top-left {
+  top: 0;
+  left: 0;
+}
+
+.top-right {
+  top: 0;
+  right: 0;
+  transform: rotate(90deg);
+}
+
+.bottom-left {
+  bottom: 0;
+  left: 0;
+  transform: rotate(270deg);
+}
+
+.bottom-right {
+  bottom: 0;
+  right: 0;
+  transform: rotate(180deg);
+}
+    .mirrored {
+      transform: translateY(-50%) scaleX(-1);
+    }
+
+    
+
+    .top-left { top: 0; left: 0; }
+    .top-right { top: 0; right: 0; transform: scaleX(-1); }
+    .bottom-left { bottom: 0; left: 0; transform: scaleY(-1); }
+    .bottom-right { bottom: 0; right: 0; transform: scale(-1, -1); }
+
+    h1 {
+      font-size: 60px;
+      text-align: center;
+      margin-top: 10px;
+      color: var(--primary-color);
+      animation: fadeIn 2s ease;
+    }
+
+    h2, h3 {
+      font-size: 30px;
+      text-align: center;
+      margin: 20px 0 10px;
+      animation: fadeIn 2.5s ease;
+    }
+
+    p, label, select, input, button {
+      font-size: 20px;
+      text-align: center;
+      color: var(--text-color-light);
+      animation: fadeIn 2.5s ease;
+    }
+
+    .center-ornament {
+      display: block;
+      width: 150px;
+      margin: 20px auto;
+      animation: fadeIn 2s ease;
+    }
+
+    .music-btn, .theme-btn {
+      display: block;
+      margin: 10px auto;
+      padding: 10px 25px;
+      background: var(--primary-color);
+      color: #fff;
+      border: none;
+      border-radius: 20px;
+      font-weight: bold;
+      font-size: 15px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 20px 0;
+    }
+
+    .time-box {
+      background: var(--accent-color);
+      border-radius: 10px;
+      padding: 10px;
+      text-align: center;
+      width: 70px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    }
+
+    .time-box span {
+      display: block;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .time-box label {
+      font-size: 12px;
+      color: #555;
+    }
+
+    .rsvp {
+      margin-top: 25px;
+    }
+
+    .rsvp select, .rsvp input, .rsvp button {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+    }
+
+    .rsvp button {
+      background: #25D366;
+      color: white;
+      border: none;
+      font-weight: bold;
+    }
+
+    .side-decor-block {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      margin: 15px 0;
+      flex-wrap: wrap;
+      text-align: center;
+    }
+
+    .side-decor-block img {
+      width: 40px;
+      height: auto;
+      opacity: 0.6;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 42px;
+      }
+      .time-box {
+        width: 60px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+ <div class="container">
+  <!-- Угловые орнаменты -->
+  <div class="corner-ornaments">
+    <img src="uglovoi.png" class="top-left" alt="corner" />
+    <img src="uglovoi.png" class="top-right" alt="corner" />
+    <img src="uglovoi.png" class="bottom-left" alt="corner" />
+    <img src="uglovoi.png" class="bottom-right" alt="corner" />
+  </div>
+
+  <!-- Орнаменты по бокам -->
+  <div class="ornaments-inner">
+    <img src="pobokam.png" alt="Left Ornament">
+    <img src="pobokam.png" class="right" alt="Right Ornament">
+  </div>
+
+    <h1>Асет & Ақбота</h1>
+
+    <button class="music-btn" id="musicBtn">Музыка қосу</button>
+
+    <h2>Үйлену тойға шақыру</h2>
+
+    <!-- Новый блок с орнаментами рядом с текстом -->
+    <div class="side-decor-block">
+      <img src="pobokam.png" alt="Орнамент">
+      <p>Бұл ерекше күнде сіздің қатысуыңыз біз үшін маңызды!</p>
+      <img src="pobokam.png" alt="Орнамент">
+    </div>
+
+    <p><strong>ҚҰРМЕТТІ АҒАЙЫН-ТУЫС, ҚҰДА-ЖЕКЖАТ, ДОС-ЖАРАН, ӘРІПТЕСТЕР!</strong></p>
+
+    <img src="naseredine.png" class="center-ornament" alt="Орнамент" />
+
+    <p>СІЗДЕРДІ БАЛАЛАРЫМЫЗ <strong>
+      
+      <h1>Асет & Ақбота</h1>
+      
+    </strong> <h2 class="invite-text">ҮЙЛЕНУ ТОЙЫНЫҢ ҚАДІРЛІ ҚОНАҒЫ БОЛУҒА ШАҚЫРАМЫЗ!</h2>
+</p>
+
+    <h3>Той салтанаты</h3>
+    
+    <div class="side-decor-block">
+      <img src="pobokam.png" alt="Орнамент">
+    <p>2025 жылдың 2 тамыз күні, сағат 18:00-де басталады.</p>
+<img src="pobokam.png" alt="Орнамент">
+    </div>
+    <div class="countdown">
+      <div class="time-box"><span id="days">00</span><label>күн</label></div>
+      <div class="time-box"><span id="hours">00</span><label>сағат</label></div>
+      <div class="time-box"><span id="minutes">00</span><label>минут</label></div>
+    </div>
+
+    <p>Мекен-жайымыз: Кеген ауылы, Ақниет тойханасы</p>
+
+    <div class="rsvp">
+    <h3>Тойға келесіз бе?</h3>
+    <select id="attendance">
+      <option>Иә, келемін</option>
+      <option>Жоқ, келе алмаймын</option>
+      <option>Жұбайыммен келемін</option>
+    </select>
+    <br><br>
+    <input type="text" id="name" placeholder="Аты-жөніңіз" />
+    <br><br>
+    <input type="number" id="guests" placeholder="Қанша адам келесіздер? (1–5)" min="1" max="5" />
+    <br><br>
+    <button onclick="sendWA()">Жіберу</button>
+  </div>
+
+    <img src="naseredine.png" class="center-ornament" alt="Орнамент" />
+
+    <h3>Той иелері:</h3>
+    <h2>Қызыр & Гүлзада</h2>
+  </div>
+
+<audio id="weddingMusic" loop autoplay src="music.mp3"></audio>
+
+  <script>
+    const music = document.getElementById('weddingMusic');
+    const musicBtn = document.getElementById('musicBtn');
+    let isMusicPlaying = false;
+
+    musicBtn.addEventListener('click', function () {
+      if (isMusicPlaying) {
+        music.pause();
+        musicBtn.textContent = 'Музыка қосу';
+      } else {
+        music.play();
+        musicBtn.textContent = 'Музыканы өшіру';
+      }
+      isMusicPlaying = !isMusicPlaying;
+    });
+
+    function updateCountdown() {
+      const weddingDate = new Date('2025-08-02T18:00:00');
+      const now = new Date();
+      const diff = weddingDate - now;
+
+      if (diff <= 0) {
+        document.getElementById('days').textContent = '00';
+        document.getElementById('hours').textContent = '00';
+        document.getElementById('minutes').textContent = '00';
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+      document.getElementById('days').textContent = String(days).padStart(2, '0');
+      document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+      document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 60000);
+
+  
+ 
+ function sendWA() {
+  const name = document.getElementById('name').value.trim();
+  const guests = document.getElementById('guests').value.trim();
+  const attendance = document.getElementById('attendance');
+  const attendanceValue = attendance.options[attendance.selectedIndex].text;
+
+  if (!name || !guests || !attendanceValue) {
+    alert("Барлық өрістерді толтырыңыз");
+    return;
+  }
+
+  const message = `Тойға қатысу: ${attendanceValue}\nАты-жөні: ${name}\nҚонақ саны: ${guests}`;
+  const encodedMessage = encodeURIComponent(message);
+  
+  // Пробуем разные форматы номера
+  const phone = "77073259503"; // или "+77086795036", "777086795036"
+  const url = `https://web.whatsapp.com/send?phone=${phone}&text=${encodedMessage}`;
+  
+  // Пробуем открыть
+  window.open(url, '_blank');
+  
+  // Если не открылось, пробуем другой URL через 0.5 сек
+  setTimeout(() => {
+    const altUrl = `https://api.whatsapp.com/send?phone=${phone}&text=${encodedMessage}`;
+    window.open(altUrl, '_blank');
+  }, 500);
+}
+  </script>
+</body>
+</html>
