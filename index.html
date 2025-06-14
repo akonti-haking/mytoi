@@ -317,7 +317,7 @@
 <audio id="weddingMusic" loop autoplay src="music.mp3"></audio>
 
   <script>
-    const music = document.getElementById('weddingMusic');
+   const music = document.getElementById('weddingMusic');
     const musicBtn = document.getElementById('musicBtn');
     let isMusicPlaying = false;
 
@@ -354,7 +354,11 @@
     }
 
     updateCountdown();
-    setInterval(updateCountdown, function sendWA() {
+    setInterval(updateCountdown, 60000);
+
+  
+ 
+function sendWA() {
   const name = document.getElementById('name').value.trim();
   const guests = document.getElementById('guests').value.trim();
   const attendance = document.getElementById('attendance');
@@ -367,21 +371,12 @@
 
   const message = `Тойға қатысу: ${attendanceValue}\nАты-жөні: ${name}\nҚонақ саны: ${guests}`;
   const encodedMessage = encodeURIComponent(message);
-  
-  // Пробуем разные форматы номера
-  const phone = "77073259503"; // или "+77086795036", "777086795036"
-  const url = `https://web.whatsapp.com/send?phone=${phone}&text=${encodedMessage}`;
-  
-  // Пробуем открыть
-  window.open(url, '_blank');
-  
-  // Если не открылось, пробуем другой URL через 0.5 сек
-  setTimeout(() => {
-    const altUrl = `https://api.whatsapp.com/send?phone=${phone}&text=${encodedMessage}`;
-    window.open(altUrl, '_blank');
-  }, 500);
+  const phone = "77086795036"; // Номер без "+"
+  const url = `https://wa.me/${phone}?text=${encodedMessage}`;
+
+  // Открываем в новом окне (или перенаправляем, если блокируется)
+  window.open(url, '_blank') || (window.location.href = url);
 }
- 
   </script>
 </body>
 </html>
